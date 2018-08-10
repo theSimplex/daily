@@ -1,0 +1,4 @@
+bs4==0.0.1
+requests==2.10.0
+link-preview==1.0
+aiohttp==2.3.10
