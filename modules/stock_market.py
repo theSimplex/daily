@@ -3,10 +3,10 @@ import csv
 from multiprocessing import Queue
 from time import time
 
-from clients.robinhood import Robinhood
-from clients.telegrammer import Telegrammer
-from weekly import plot_stuff
-from datetime import datetime
+from modules.clients.robinhood import Robinhood
+from modules.clients.telegrammer import Telegrammer
+from modules.weekly import plot_stuff
+from datetime import datetime, date
 from pprint import pprint
 
 config = configparser.ConfigParser()
@@ -88,6 +88,7 @@ def get_summary():
 
 
 def summary_scheduler():
+    get_summary()
     while True:
         if date.today().weekday() > 4 and datetime.now().hour in [8, 15]:
             get_summary()

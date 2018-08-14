@@ -13,8 +13,8 @@ import getpass
 import requests
 import six
 
-import clients.exceptions as RH_exception
-import clients.endpoints as endpoints
+import modules.clients.exceptions as RH_exception
+import modules.clients.endpoints as endpoints
 
 
 class Bounds(Enum):
