@@ -3,15 +3,12 @@ from modules.async_seeker import seek
 from multiprocessing import Process
 from aiotg import Bot, Chat
 from modules.hashtag import form_message
+from modules.stock_market import summary_scheduler
 import configparser
 
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-
-
-def deals():
-    seek()
 
 
 def botsman():
@@ -26,7 +23,8 @@ def botsman():
 
 if __name__ == '__main__':
     processes = []
-    processes.append(Process(target=deals, args=()))
+    processes.append(Process(target=summary_scheduler, args=()))
+    processes.append(Process(target=seek, args=()))
     processes.append(Process(target=botsman, args=()))
     print(f"Press Ctrl+{'Break' if os.name == 'nt' else 'C'} to exit")
     try:
