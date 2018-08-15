@@ -6,6 +6,7 @@ from time import time
 from modules.clients.robinhood import Robinhood
 from modules.clients.telegrammer import Telegrammer
 from modules.weekly import plot_stuff
+from modules.clients.file_driver import save_summary_to_file
 from datetime import datetime, date
 from pprint import pprint
 
@@ -83,6 +84,7 @@ def get_summary():
     summary = get_current_positions_summary()
     summary['money'] = get_balance()
     summary['diff'] = total_profit()
+    save_summary_to_file(summary, flag='stock')
     message = get_string_message(summary)
     t.send_text(message, formatted=True)
 
@@ -90,9 +92,9 @@ def get_summary():
 def summary_scheduler():
     get_summary()
     while True:
-        if date.today().weekday() > 4 and datetime.now().hour in [8, 15]:
+        if date.today().weekday() < 4 and datetime.now().hour in [8, 15]:
             get_summary()
             time.sleep(3601)
-            
+
 
 get_summary()
