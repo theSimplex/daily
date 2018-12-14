@@ -126,7 +126,11 @@ class Robinhood:
         self.password = password
         payload = {
             'password': self.password,
-            'username': self.username
+            'username': self.username,
+            'client_id': 'c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS',
+            'expires_in': 86400,
+            'grant_type': 'password',
+            'scope': 'internal'
         }
 
         if mfa_code:
@@ -143,9 +147,9 @@ class Robinhood:
         if 'mfa_required' in data.keys():           
             raise RH_exception.TwoFactorRequired()  
 
-        if 'token' in data.keys():
-            self.auth_token = data['token']
-            self.headers['Authorization'] = 'Token ' + self.auth_token
+        if 'access_token' in data.keys():
+            self.headers['access_token'] = data['access_token']
+            self.headers['refresh_token'] = data['refresh_token']
             return True
 
         return False

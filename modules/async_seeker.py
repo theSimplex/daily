@@ -85,5 +85,8 @@ def seek():
             time.sleep(timeout)
         except KeyboardInterrupt:
             raise
-        except:
+        except Exception as e:
+            print(e)
             print('Failure: ', sys.exc_info()[0])
+
+seek()

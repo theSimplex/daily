@@ -12,8 +12,7 @@ from pprint import pprint
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-rh = Robinhood(username=config.get('User', 'username'),
-               password=config.get('User', 'password'))
+rh = Robinhood(username=config.get('User', 'username'), password=config.get('User', 'password'))
 t = Telegrammer(token=config.get('Telegram', 'token'),
                 chat_id=config.get('Telegram', 'chat_id'),
                 heartbeat_id=config.get('Telegram', 'heartbeat_id'))

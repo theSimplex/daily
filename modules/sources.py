@@ -8,10 +8,13 @@ crap_list = ['coupon', 'contest', 'chance', '.99', 'off', 'buy',
              'points', 'survey', 'rewards', 'rental', 'starting', 'kmart',
              'Kroger', 'guide', 'only', 'app', 'regular', 'just', '-at-',
              'printable', 'recipe', '_at_', 'download', 'event', 'dvd',
-             'dog', 'activity', 'subscription', 'sample', 'video', 'android']
+             'dog', 'activity', 'subscription', 'sample', 'video', 'android', 
+             'alb.reddit.com']
+
 
 def is_crap(link):
     return any(i.upper() in link.upper() for i in crap_list)
+
 
 class Sources(object):
     pass
@@ -24,8 +27,7 @@ class Hip2Save(Sources):
     def process(page):
         to_send = []
         soup = BeautifulSoup(page, 'html.parser')
-        for article in soup.findAll("h6",
-                                    {"class": "entry-title grid-title "}):
+        for article in soup.findAll("h6", {"class": "entry-title"}):
             if len(article.findAll("div",
                                    {"class": "es-flag new-flags"})) == 0:
                 link = article.find('a').get('href')
@@ -57,8 +59,8 @@ class Reddit(Sources):
     def process(page):
         to_send = []
         soup = BeautifulSoup(page, 'html.parser')
-        for topic in soup.findAll("p", {"class": "title"}):
-            link = topic.find('a').get('href')
+        for topic in soup.findAll('a', {'rel': 'noopener noreferrer'}):
+            link = topic.get('href')
             if link.startswith('/r'):
                 continue
             if link and not is_crap(link):

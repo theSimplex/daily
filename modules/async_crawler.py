@@ -3,11 +3,9 @@ from aiohttp import ClientSession
 from bs4 import BeautifulSoup
 from modules.sources import Sources
 
-
-
 headers = {'User-Agent':
-          ('Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36'
-           ' (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')}
+           ('Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36'
+            ' (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')}
 
 
 class AsyncCrawler(object):
@@ -15,7 +13,6 @@ class AsyncCrawler(object):
     def __init__(self):
         self.loop = asyncio.get_event_loop()
         self.links = []
-
 
     async def get_links(self, sources):
         async with ClientSession() as session:
