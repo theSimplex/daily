@@ -94,7 +94,7 @@ six==1.11.0
 system-service==0.3
 systemd-python==234
 toml==0.9.4
-Twisted==18.7.0
+Twisted==19.7.0
 txaio==18.7.1
 tzlocal==1.5.1
 ubuntu-drivers-common==0.0.0
