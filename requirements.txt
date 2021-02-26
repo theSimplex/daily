@@ -1,4 +1,4 @@
-aiohttp==3.3.2
+aiohttp==3.7.4
 aiotg==0.9.9
 appdirs==1.4.3
 APScheduler==3.5.1
